@@ -25,6 +25,11 @@ object TasksRepository {
 
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
+    data class UserPreferences(
+        val showCompleted: Boolean,
+        val sortOrder: SortOrder
+    )
+
     // In a real app, this would be coming from a data source like a database
     val tasks = flowOf(
         listOf(
@@ -38,7 +43,7 @@ object TasksRepository {
                 name = "Import project",
                 deadline = simpleDateFormat.parse("2020-04-03")!!,
                 priority = TaskPriority.MEDIUM,
-                completed = true
+                completed = false
             ),
             Task(
                 name = "Check out the code", deadline = simpleDateFormat.parse("2020-05-03")!!,
